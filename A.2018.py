@@ -1,15 +1,13 @@
+from collections import defaultdict
 n = int(input())
 a = list(map(int, input().split()))
-a.sort()
-cnt = 0
-mcnt = 0
-c = a[0]
-for i in range(len(a) - 1):
-    if a[i] == a[i+1]:
-        cnt += 1
-        if mcnt <= cnt:
-            mcnt = cnt
-            c = a[i]
-    else:
-        cnt = 0
-print(f"{c}")
+count = defaultdict(int)
+max_count = 0
+max_num = 0
+for num in a:
+    count[num] += 1
+    if count[num] > max_count or (count[num] == max_count and num > max_num):
+        max_count = count[num]
+        max_num = num
+
+print(max_num)
